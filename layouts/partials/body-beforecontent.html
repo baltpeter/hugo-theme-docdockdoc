@@ -1,111 +1,73 @@
-<div id="headermain"></div>
 <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
       {{ partial "header.html" . }}
     </div>
     {{- if not .Site.Params.disableSearch}}
-        <div class="searchbox">
-		    <label for="search-by"><i class="fa fa-search"></i></label>
-		    <input data-search-input id="search-by" type="text" placeholder="{{T "Search-placeholder"}}">
-		    <span data-search-clear=""><i class="fa fa-close"></i></span>
-		</div>
-		<script type="text/javascript" src="{{"js/lunr.min.js" | relURL}}"></script>
-		<script type="text/javascript" src="{{"js/auto-complete.js" | relURL}}"></script>
-		<script type="text/javascript">
-        {{ if .Site.IsMultiLingual }}
-            var baseurl = "{{.Site.BaseURL}}{{.Site.LanguagePrefix}}";
-        {{ else }}
-            var baseurl = "{{.Site.BaseURL}}";
-        {{ end }}
-		</script>
-		<script type="text/javascript" src="{{"js/search.js" | relURL}}"></script>
+    <div class="searchbox">
+      <label for="search-by"><i class="fa fa-search"></i></label>
+      <input data-search-input id="search-by" type="text" placeholder="{{T "Search-placeholder"}}">
+      <span data-search-clear=""><i class="fa fa-close"></i></span>
+    </div>
+    <script type="text/javascript" src="{{"js/lunr.min.js" | relURL}}"></script>
+    <script type="text/javascript" src="{{"js/auto-complete.js" | relURL}}"></script>
+    <script type="text/javascript">
+      { { if .Site.IsMultiLingual } }
+      var baseurl = "{{.Site.BaseURL}}{{.Site.LanguagePrefix}}";
+      { { else } }
+      var baseurl = "{{.Site.BaseURL}}";
+      { { end } }
+    </script>
+    <script type="text/javascript" src="{{"js/search.js" | relURL}}"></script>
     {{- end}}
   </div>
+  <ul class="topics">
+    {{- partial "menu.html" . }}
 
-      <ul class="topics">
-        {{- if not .Site.Params.disableHomeIcon}}
-            <li data-nav-id="{{"/" | relLangURL}}" class="dd-item">
-            <a href="{{"/" | relLangURL}}"><i class="fa fa-fw fa-home"></i></a>
-            </li>
-        {{- end}}
-
-		{{- partial "menu.html" . }}
-
-		{{- with .Site.Menus.shortcuts}}
-        <section id="shortcuts">
-            {{- range sort . "Weight"}}
-                <li class="" role="">
-                    {{- .Pre -}}
-                    <a href="{{.URL}}" target="_blank" rel="noopener">{{safeHTML .Name}}</a>
-                    {{- .Post -}}
-                </li>
-            {{- end}}
-        </section>
-		{{- end}}
-
-    <hr />
-    <li>{{- partial "language-selector.html" . }}</li>
-
-    </ul>
-
- <section id="footer">
-      {{- partial "menu-footer.html" . }}
+    {{- with .Site.Menus.shortcuts}}
+    <section id="shortcuts">
+      {{- range sort . "Weight"}}
+      <li class="" role="">
+        {{- .Pre -}}
+        <a href="{{.URL}}" target="_blank" rel="noopener">{{safeHTML .Name}}</a>
+        {{- .Post -}}
+      </li>
+      {{- end}}
     </section>
+    {{- end}}
+  </ul>
 </nav>
 
-
-
 <section id="body">
-<div class="padding">
-{{if not .IsHome}}
-  <div id="top-bar">
-    {{ if and (or .IsPage .IsSection) .Site.Params.editURL }}
+  <div class="padding">
+    <div id="top-bar">
+      {{ if and (or .IsPage .IsSection) .Site.Params.editURL }}
       {{ $File := .File }}
       {{ $Site := .Site }}
       {{with $File.Path }}
-    <div id="top-github-link">
-      <a class="github-link" href="{{ $Site.Params.editURL }}{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}" target="blank">
-        <i class="fa fa-code-fork"></i>&nbsp;{{T "Edit-this-page"}}
-      </a>
-    </div>
+      <div id="top-github-link">
+        <a class="github-link" href="{{ $Site.Params.editURL }}{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}"
+          target="blank">
+          <i class="fa fa-code-fork"></i>&nbsp;{{T "Edit-this-page"}}
+        </a>
+      </div>
       {{- end }}
-    {{- end -}}
+      {{- end -}}
 
-    <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-        <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
+      <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
         <span class="links">
-        {{ template "breadcrumb" dict "page" . "value" .Title }}
+          {{ template "breadcrumb" dict "page" . "value" .Title }}
         </span>
+      </div>
     </div>
+    <div id="body-inner">
+      <h1>{{.Title}}</h1>
 
-    <!-- TOC -->
-    <div class="progress">
-        <div class="wrapper">
-    {{ .TableOfContents }}
-        </div>
-    </div>
-    <!-- /TOC -->
-
-  </div>
-{{end}}
-{{if .Params.tags }}
-  <div id="tags">
-    {{ range $index, $tag := .Params.tags }}
-      <a class="label label-default" href="{{$.Site.BaseURL}}tags/{{ $tag | urlize }}">{{ $tag }}</a>
-    {{ end }}
-  </div>
-{{end}}
-<div id="body-inner">
-  {{if not .IsHome}}
-    <h1>{{.Title}}</h1>
-  {{end}}
-
-{{define "breadcrumb"}}
-{{ if .page.Parent}}
-{{$value := (printf "<a href='%s'>%s</a> > %s" .page.Parent.Permalink .page.Parent.Title .value)}}
-{{ template "breadcrumb" dict "page" .page.Parent "value" $value }}
-{{else}}
- {{.value|safeHTML}}
-{{end}}
-{{end}}
+      {{define "breadcrumb"}}
+      {{ if .page.Parent}}
+      {{$value := (printf "<a href='%s'>%s</a> > %s" .page.Parent.Permalink .page.Parent.Title .value)}}
+      {{ template "breadcrumb" dict "page" .page.Parent "value" $value }}
+      {{else}}
+      {{.value|safeHTML}}
+      {{end}}
+      {{end}}
