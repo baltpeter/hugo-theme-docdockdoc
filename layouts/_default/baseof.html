@@ -1,20 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
-    {{ partial "head.html" . }}
-  </head>
-  <body data-url="{{ .RelPermalink }}">
-    {{ partial "body-beforecontent.html" . }}
 
-    {{ block "main" . }}
-    {{ end }}
+<head>
+  <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+  {{ partial "head.html" . }}
+</head>
 
-    {{ partial "body-aftercontent.html" . }}
+<body data-url="{{ .RelPermalink }}">
+  {{ partial "sidebar" . }}
 
-    {{ block "footer" . }}
-    {{ end }}
+  <section id="body">
+    <div class="padding">
+      <div id="top-bar">
+        {{ if and (or .IsPage .IsSection) .Site.Params.editURL }}
+        {{ $File := .File }}
+        {{ $Site := .Site }}
+        {{with $File.Path }}
+        <div id="top-github-link">
+          <a class="github-link"
+            href="{{ $Site.Params.editURL }}{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}" target="blank">
+            <i class="fa fa-code-fork"></i>&nbsp;{{T "Edit-this-page"}}
+          </a>
+        </div>
+        {{- end }}
+        {{- end -}}
 
-    {{ partial "custom-footer.html" . }}
-  </body>
+        <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+          <span class="links">
+            {{ template "breadcrumb" dict "page" . "value" .Title }}
+          </span>
+        </div>
+      </div>
+      <div id="body-inner">
+        <h1>{{.Title}}</h1>
+
+        {{define "breadcrumb"}}
+        {{ if .page.Parent}}
+        {{$value := (printf "<a href='%s'>%s</a> > %s" .page.Parent.Permalink .page.Parent.Title .value)}}
+        {{ template "breadcrumb" dict "page" .page.Parent "value" $value }}
+        {{else}}
+        {{.value|safeHTML}}
+        {{end}}
+        {{end}}
+
+        {{ block "main" . }}
+        {{ end }}
+
+        {{ partial "custom-content-footer.html" . }}
+      </div>
+    </div>
+  </section>
+
+
+  {{ block "footer" . }}
+  {{ end }}
+
+  {{ partial "custom-footer.html" . }}
+</body>
+
 </html>
