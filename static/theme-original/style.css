@@ -1,9 +1,4 @@
 @charset "UTF-8";
- /*
-	Built with SCSS.
-	If you would like to explore this CSS,
-	use source map feature of your browser.
- */
 @font-face {
   font-family: 'Novacento Sans Wide';
   src: url("../fonts/Novecentosanswide-UltraLight-webfont.eot");
@@ -1407,5 +1402,3 @@ pre .copy-to-clipboard:hover {
 
   #body {
     margin-left: 0px; } }
-
-/*# sourceMappingURL=style.css.map */
