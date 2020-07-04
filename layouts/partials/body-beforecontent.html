@@ -1,8 +1,5 @@
 <div id="headermain"></div>
-<nav id="sidebar" class="{{if $.Site.Params.showVisitedLinks }}showVisitedLinks{{end}}">
-
-
-
+<nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
       {{ partial "header.html" . }}
@@ -45,11 +42,6 @@
                 </li>
             {{- end}}
         </section>
-
-        {{- if $.Site.Params.showVisitedLinks}}
-            <a id="clear-history" class="" href="#" data-clear-history-toggle=""><i class="fa  fa-history"></i> {{T "Clear-History"}}</a>
-        {{- end}}
-
 		{{- end}}
 
     <hr />
@@ -65,7 +57,6 @@
 
 
 <section id="body">
-<div id="overlay"></div>
 <div class="padding">
 {{if not .IsHome}}
   <div id="top-bar">
@@ -82,11 +73,6 @@
     {{- end -}}
 
     <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-        <span id="sidebar-toggle-span">
-          <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
-            <i class="fa fa-bars"></i>
-          </a>
-        </span>
         <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
         <span class="links">
         {{ template "breadcrumb" dict "page" . "value" .Title }}

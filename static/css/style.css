@@ -498,15 +498,6 @@ code {
     background: #1d1f21;
 }
 
-code + .copy-to-clipboard {
-    margin-left: -2px;
-    border-left: 0 !important;
-    font-size: inherit !important;
-    vertical-align: middle;
-    height: 21px;
-    top: -1px;
-}
-
 pre {
     padding: 1rem;
     margin: 2rem 0;
@@ -786,26 +777,6 @@ td {
     padding: 0 0.1rem;
 }
 
-.copy-to-clipboard {
-    display: inline-block;
-    position: relative;
-    color: #5e5e5e;
-    background-color: #f8efd1;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 0 2px 2px 0;
-    padding: 0.1rem;
-    border: 1px solid #ffeeb8;
-    -webkit-transition: all 0.15s ease;
-    -moz-transition: all 0.15s ease;
-    -ms-transition: all 0.15s ease;
-    transition: all 0.15s ease;
-}
-
-.copy-to-clipboard:hover {
-    background-color: #f8efd1;
-}
-
 .clippy-icon {
     padding-left: 6px;
     padding-right: 4px;
@@ -822,20 +793,6 @@ td {
     pointer-events: none;
 }
 
-pre .copy-to-clipboard {
-    position: absolute;
-    right: 4px;
-    top: 4px;
-    background-color: #e4e4e4;
-    color: #ccc;
-    border-radius: 2px;
-}
-
-pre .copy-to-clipboard:hover {
-    background-color: #e4e4e4;
-    color: #fff;
-}
-
 .parent-element {
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
@@ -844,16 +801,6 @@ pre .copy-to-clipboard:hover {
 
 #searchResults {
     text-align: left;
-}
-
-#sidebar-toggle-span {
-    display: none;
-}
-
-#sidebar-toggle-span {
-    border-right: thin solid #dad8d8 !important;
-    padding-right: 0.5rem !important;
-    margin-right: 1rem !important;
 }
 
 #sidebar {
@@ -1065,9 +1012,6 @@ pre .copy-to-clipboard:hover {
 #sidebar ul li.active > div .category-icon {
     right: 15px;
 }
-#sidebar.showVisitedLinks ul li a {
-    width: 100%;
-}
 #sidebar #shortcuts label {
     display: inline;
     font-weight: 100;
@@ -1077,11 +1021,6 @@ pre .copy-to-clipboard:hover {
     color: #fff;
 }
 
-@media only all and (max-width: 47.938em) {
-    #sidebar-toggle-span {
-        display: inline;
-    }
-}
 @media only all and (max-width: 59.938em) {
     #body .padding {
         position: static;
@@ -1164,25 +1103,12 @@ pre .copy-to-clipboard:hover {
         margin-left: 230px;
         overflow: hidden;
     }
-
-    .sidebar-hidden #overlay {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        z-index: 10;
-        background: rgba(255, 255, 255, 0.5);
-        cursor: pointer;
-    }
 }
 @media print {
     #sidebar,
     #navigation,
     #top-bar,
-    .anchor,
-    #sidebar-toggle-span,
-    .copy-to-clipboard {
+    .anchor {
         display: none;
     }
 
