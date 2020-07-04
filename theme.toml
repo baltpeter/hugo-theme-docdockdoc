@@ -1,19 +1,20 @@
 # theme.toml template for a Hugo theme
 # See https://github.com/spf13/hugoThemes#themetoml for an example
 
-name = "docDock"
+name = "DocDockDoc"
 license = "MIT"
-licenselink = "https://github.com/vjeantet/hugo-theme-docdock/blob/master/LICENSE.md"
-description = "Documentation theme for Hugo"
+licenselink = "https://github.com/baltpeter/hugo-theme-docdockdoc/blob/master/LICENSE.md"
+description = "Documentation theme for Hugo, forked for my personal docs site"
 homepage = "https://github.com/vjeantet/hugo-theme-docdock"
-repo = "https://github.com/vjeantet/hugo-theme-docdock"
-tags = ["documentation", "menu","slide","search"]
-features = ["documentation","menu","nested sections","search","slide", "attachments"]
-min_version = 0.32
+repo = "https://github.com/baltpeter/hugo-theme-docdockdoc"
+tags = ["documentation", "menu","search"]
+features = ["documentation","menu","nested sections","search", "attachments"]
+min_version = 0.73
 
-[author]
-  name = "Valere JEANTET"
-  homepage = "http://vjeantet.fr/"
+authors = [
+  {name = "Valere JEANTET", homepage = "http://vjeantet.fr/"},
+  {name = "Benjamin Altpeter", homepage = "https://benjamin-altpeter.de/"}
+]
 
 [original]
   name = "Learn"
