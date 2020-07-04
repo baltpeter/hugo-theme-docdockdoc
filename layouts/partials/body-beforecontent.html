@@ -3,7 +3,6 @@
 
 
 
-<div class="highlightable">
   <div id="header-wrapper">
     <div id="header">
       {{ partial "header.html" . }}
@@ -61,14 +60,13 @@
  <section id="footer">
       {{- partial "menu-footer.html" . }}
     </section>
-  </div>
 </nav>
 
 
 
 <section id="body">
 <div id="overlay"></div>
-<div class="padding highlightable">
+<div class="padding">
 {{if not .IsHome}}
   <div id="top-bar">
     {{ if and (or .IsPage .IsSection) .Site.Params.editURL }}
