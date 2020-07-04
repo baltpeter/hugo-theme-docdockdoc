@@ -17,46 +17,6 @@ var getUrlParameter = function getUrlParameter(sPageURL) {
 };
 
 jQuery(document).ready(function () {
-
-    // Execute actions on images generated from Markdown pages
-    var images = $("article img").not(".inline");
-    // Wrap image inside a featherlight (to get a full size view in a popup)
-    images.wrap(function () {
-        var image = $(this);
-        if (!image.parent("a").length) {
-            return "<a href='" + image[0].src + "' data-featherlight='image'></a>";
-        }
-    });
-
-    // Change styles, depending on parameters set to the image
-    images.each(function (index) {
-        var image = $(this);
-        var o = getUrlParameter(image[0].src);
-        if (typeof o !== "undefined") {
-            var h = o["height"];
-            var w = o["width"];
-            var c = o["classes"];
-            image.css({
-                width: function () {
-                    if (typeof w !== "undefined") {
-                        return w;
-                    }
-                },
-                height: function () {
-                    if (typeof h !== "undefined") {
-                        return h;
-                    }
-                }
-            });
-            if (typeof c !== "undefined") {
-                var classes = c.split(',');
-                $.each(classes, function(i) {
-                    image.addClass(classes[i]);
-                });
-            }
-        }
-    });
-
     // Add link button for every
     var text, clip = new Clipboard('.anchor');
     $("h1~h2,h1~h3,h1~h4,h1~h5,h1~h6").append(function (index, html) {
@@ -229,12 +189,6 @@ jQuery(window).on('load', function() {
     for (var url in sessionStorage) {
         if (sessionStorage.getItem(url) == 1) jQuery('[data-nav-id="' + url + '"]').addClass('visited');
     }
-});
-
-$(function() {
-    $('a[rel="lightbox"]').featherlight({
-        root: 'section#body'
-    });
 });
 
 jQuery.extend({
