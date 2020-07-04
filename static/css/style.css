@@ -777,22 +777,6 @@ td {
     padding: 0 0.1rem;
 }
 
-.clippy-icon {
-    padding-left: 6px;
-    padding-right: 4px;
-    padding-bottom: 1px;
-    pointer-events: none;
-    vertical-align: top;
-    height: 100%;
-}
-
-.clippy-svg {
-    /* TODO: Fix this so clippy fill colour is differnt when in block, not inline */
-    /*    fill: $main_code_inline_text_color !important;*/
-    fill: black !important;
-    pointer-events: none;
-}
-
 .parent-element {
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;

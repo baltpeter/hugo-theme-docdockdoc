@@ -1,7 +1,7 @@
 <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
-      {{ partial "header.html" . }}
+        <a class="baselink" href="{{.Site.BaseURL}}">{{.Site.Title}}</a>
     </div>
     {{- if not .Site.Params.disableSearch}}
     <div class="searchbox">
