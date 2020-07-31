@@ -1,6 +1,6 @@
 <section class="attachments">
 	<label>
-		<h2>{{with .Get "title"}}{{.}}{{else}}{{T "Attachments-label"}}{{end}}</h2>
+		<h2>{{with .Get "title"}}{{.}}{{else}}Attachments{{end}}</h2>
 	</label>
 	{{if or (eq .Page.File.BaseFileName "index") (eq .Page.File.BaseFileName "_index") }}
 		{{$.Scratch.Add "filesName" "files"}}
