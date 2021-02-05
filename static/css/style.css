@@ -33,6 +33,12 @@ a:active,
 a:focus {
     color: #007ed7;
 }
+.heading a.heading-link {
+    display: none;
+}
+.heading:hover a.heading-link {
+    display: initial;
+}
 
 img {
     max-width: 100%;
