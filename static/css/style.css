@@ -202,6 +202,9 @@ footer {
     bottom: 0;
     width: 350px;
     line-height: 27px;
+    font-size: 16px;
+    height: 100%;
+    overflow-y: auto;
 }
 #sidebar a {
     color: #fff;
@@ -220,6 +223,7 @@ footer {
 }
 #sidebar ul.topics {
     margin: 0 0 0 1rem;
+    padding-bottom: 30px;
 }
 #sidebar ul.topics ul {
     /* display: none; */
