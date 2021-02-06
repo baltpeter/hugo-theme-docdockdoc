@@ -7,6 +7,11 @@
 </head>
 
 <body data-url="{{ .RelPermalink }}">
+  <div id="mobile-header">
+    <button class="link-btn sidebar-toggle" onclick="document.getElementById('sidebar').classList.toggle('mobile-open')"
+      title="Open sidebar"><i class="fa fa-bars"></i></button>
+    <a class="baselink" href="{{.Site.BaseURL}}">{{.Site.Title}}</a>
+  </div>
   {{ partial "sidebar" . }}
 
   <section id="body">

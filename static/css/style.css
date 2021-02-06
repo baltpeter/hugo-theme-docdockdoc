@@ -42,11 +42,6 @@ a:focus {
 
 .copy-to-clipboard-btn {
     margin-left: 5px;
-    padding: 0;
-    appearance: none;
-    background: none;
-    border: none;
-    cursor: pointer;
     color: #00529b;
 }
 .copy-to-clipboard-btn:hover {
@@ -145,6 +140,14 @@ footer {
     color: #5f1b1b !important;
 }
 
+.link-btn {
+    padding: 0;
+    appearance: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 /*
 ------------------------------------------------------------------------------------------------------------------------
 */
@@ -187,6 +190,7 @@ footer {
     font-size: 0.8em;
 }
 
+#mobile-header,
 #header-wrapper {
     background: #00529b;
     color: #fff;
@@ -194,10 +198,37 @@ footer {
     border-bottom: 1px solid #183f81;
     padding: 1rem;
 }
-#header .baselink {
+#header .baselink,
+#mobile-header .baselink {
     font-size: 1.3em;
     font-weight: bold;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
+}
+#mobile-header {
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+#mobile-header a,
+#mobile-header a:visited {
+    color: #fff;
+}
+#mobile-header a:focus,
+#mobile-header a:active,
+#mobile-header a:hover {
+    color: #e0e0e0;
+}
+#mobile-header .sidebar-toggle {
+    font-size: 20px;
+    color: #fff;
+    position: absolute;
+    left: 1em;
 }
 
 .searchbox {
@@ -316,4 +347,85 @@ footer {
 }
 #sidebar ul li.active > div .category-icon {
     right: 15px;
+}
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+*/
+
+@media only all and (max-width: 986px) {
+    #sidebar {
+        width: 230px;
+    }
+
+    #body {
+        margin-left: 230px;
+    }
+}
+@media only all and (max-width: 800px) {
+    #body .padding {
+        padding: 5px 2rem;
+    }
+
+    #sidebar {
+        display: none;
+    }
+    #sidebar.mobile-open {
+        display: initial;
+        width: 100vw;
+        max-width: 400px;
+        z-index: 999;
+        margin-top: 64px;
+        height: calc(100vh - 64px);
+    }
+    #sidebar.mobile-open #header {
+        display: none;
+    }
+
+    #mobile-header {
+        display: flex;
+    }
+    #top-bar {
+        display: none;
+    }
+
+    #body {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+@media print {
+    #body {
+        margin: 0;
+    }
+
+    #sidebar,
+    #top-bar,
+    .copy-to-clipboard-btn,
+    .heading-link {
+        display: none !important;
+    }
+
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #000 !important;
+        background-color: #fff !important;
+    }
+
+    code,
+    pre {
+        background: #fff !important;
+        color: #000;
+    }
+
+    a[href]:after {
+        content: ' [' attr(href) ']';
+        font-style: italic;
+    }
 }
